@@ -15,16 +15,15 @@ struct TreeNode{
 };
 
 int main(){
-	char ch[6];
+	char ch[4];
 	int number;
 	int i = 0, j;
-	scanf("%d", &number);
+	scanf_s("%d", &number);
 	for (i = 0; i < 2 * number; i++)
 	{
-		scanf("%s", &ch);
+		scanf_s("%s", &ch);
 		if (ch[1] == 'u'){
-			scanf("%d", &j);
-			printf("%d", j);
+			printf("%s", ch);
 		}
 	}
 	system("pause");
