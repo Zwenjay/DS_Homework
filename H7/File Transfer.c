@@ -1,85 +1,49 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct Node * PtrtoNode;
-typedef PtrtoNode Set;
-struct Node{
-	int Element;
-	Set Next;
-}; 
+#include<iostream>
+using namespace std;
 
-void Check(char a, char b, Set* s){
-	int i=a-'1';
-	int j=b-'1';
-	Set temp1[10];
-	Set temp2[10];
-	int id1=0,id2=0,k;
-	int rs1,rs2;
-	Set p;
-	p=s[i];
-	while(p->Next!=NULL)
+void Check(char a, char b, int *s){
+	int i=a-'0';
+	int j=b-'0';
+	int rs1=i, rs2=j;
+	while(s[rs1]!=-1)
 		{
-			temp1[id1++]=p;
-			p=p->Next;
+			rs1=s[rs1];
 		}
-		temp1[id1]=p;
-	rs1=p->Element;
-	p=s[j];
-	while(p->Next!=NULL){
-		temp2[id2++]=p;
-		p=p->Next;
+	while(s[rs2]!=-1){
+		rs2=s[rs2];
 	}
-	temp2[id2]=p;
-	for(k=0;k<id1;k++){
-		temp1[k]->Next=temp1[id1];
-	}
-	for(k=0;k<id2;k++){
-		temp2[k]->Next=temp2[id2];
-	}
-	rs2=p->Element;
 	if(rs1==rs2) printf("yes\n");
 	else printf("no\n");
 }
 
-void Insert(char a, char b, Set *s){
-	int i=a-'1';
-	int j=b-'1';
-	int d1=0, d2=0;
-	Set p,q;
-	p=s[i];
-	q=s[j];
-	while(p->Next!=NULL){
-		p=p->Next;
-		d1++;
-	}
-	while(q->Next!=NULL){
-		q=q->Next;
-		d2++;
-		}
+void Insert(char a, char b,int *s){
+	int i=a-'0';
+	int j=b-'0';
+	int id1=i,id2=j;
+	int d1=0,d2=0;
+	while(s[id1]!=-1){
+		id1=s[id1];
+		d1++;}
+	while(s[id2]!=-1){
+		id2=s[id2];
+		d2++;}
 	if(d1<d2)
-	{
-	p->Next=(Set)malloc(sizeof(struct Node));
-	p->Next=q;
-}else
-{
-	q->Next=(Set)malloc(sizeof(struct Node));
-	q->Next=p;
-}
+		s[id1]=id2;
+	else
+		s[id2]=id1;
 }
 
 
 int main(){
 	int n,i=0;
-	Set temps;
 	char line[10];
 	scanf("%d",&n);
-	Set s[n];
-	for(i=0;i<n;i++){
-		temps=(Set)malloc(sizeof(struct Node));
-		temps->Element=i+1;
-		temps->Next=NULL;
-		s[i]=temps;
-	}
+	int s[n+1];
+	for(i=1;i<n+1;i++)
+		s[i]=-1;
 	while(1){
 		gets(line);
 		if(line[0]=='C')
@@ -93,7 +57,6 @@ int main(){
 			printf("There are %d components.",n);
 			break;
 		}
-			
 		else if(line[0]=='S'&&n==1)
 			{printf("The network is connected.");
 			break;}
