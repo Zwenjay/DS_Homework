@@ -20,8 +20,6 @@ int main()
 	system("pause");
 	return 0;
 }
-
-
 ElementType EvalPostfix(char *expr){
 	int i = 0;
 	int num = 0;
