@@ -68,7 +68,7 @@ int main()
 		else, print 0
 	*/
 	if(G->LeastNeed[G->Sp]<0)
-		printf(-1*G->LeastNeed[G->Sp]);
+		printf("%d",-1*G->LeastNeed[G->Sp]);
 	else
 		printf("0");
     return 0;
@@ -104,13 +104,14 @@ MGraph ReadG(){
 		scanf("%d",&(m->CurrentNums[i]));
 		m->LeastNeed[i]=INFINITY;
 	}
-	G->LeastNeed[PBMC]=0;
+	m->LeastNeed[PBMC]=0;
 	
 	for(i=0;i<M;i++){		//set road's length
 		scanf("%d%d%d",&p,&q,&r);
 		m->R[p][q]=r;
 		m->R[q][p]=r;
 	}
+	return m; 
 }
 
 
@@ -151,7 +152,7 @@ void Solution(MGraph G, RoadLength dist[], Station path[]){
 			Find the nearest unchecked station and label it as checked,
 			if not found, break the loop.
 		*/
-		for(i=0;i<G->Ns;i++){
+		for(i=0;i<=G->Ns;i++){
 			if(!checked[i] && dist[i]<smallest_dist){
 				smallest_dist=dist[i];
 				p=i;
