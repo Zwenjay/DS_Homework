@@ -172,12 +172,12 @@ void Solution(MGraph G, RoadLength dist[], Station path[]){
 					//Only change distance if it will be shorter.
 					dist[i]=G->R[p][i]+dist[p];
 					path[i]=p;
-					G->LeastNeed[i]=5-G->CurrentNums[i]+G->LeastNeed[p];
+					G->LeastNeed[i]=G->Capacity/2-G->CurrentNums[i]+G->LeastNeed[p];
 				}
 
 				else if(G->R[p][i]+dist[p]==dist[i]){
 					//Only if distance is the same, then consider the needed bikes
-					if(5-G->CurrentNums[i]+G->LeastNeed[p]<G->LeastNeed[i]&&G->LeastNeed[i]>0){
+					if(G->Capacity/2-G->CurrentNums[i]+G->LeastNeed[p]<G->LeastNeed[i]&&G->LeastNeed[i]>0){
 						// If the current needed bikes are positive, then less is better, even if it lead to a negative velue. 
 						dist[i]=G->R[p][i]+dist[p];
 						path[i]=p;
